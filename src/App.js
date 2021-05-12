@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import 'materialize-css'
+import Header from "./components/header/Header";
+import { Route } from 'react-router-dom'
+import CreatePage from "./pages/createPage/CreatePage";
+import BasePage from "./pages/basePage/BasePage";
 
-function App() {
+
+function App({store}) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header/>
+        <Route path='/createPage' render={() => <CreatePage/>}/>
+        <Route path='/basePage' render={() => <BasePage/>}/>
     </div>
   );
 }
