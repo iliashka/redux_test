@@ -1,13 +1,14 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {CREATE_PERSON} from "../../redux/constants";
+import {CREATE_PERSON, REGISTER_REQUEST} from "../../redux/constants";
 
 function CreatePage() {
 
     const [person, setPerson] = React.useState({
         firstName: '',
-        lastName: '',
-        age: '',
+        email: '',
+        password: '',
+        role: 'user'
     })
 
     const handleChange = (e) => {
@@ -17,9 +18,12 @@ function CreatePage() {
 
 
     const dispatch = useDispatch()
+    function registerActionCreator () {
+       return {type: REGISTER_REQUEST, payload: person}
+    }
 
     const createUserHandler = () => {
-        dispatch({type: CREATE_PERSON, payload: person})
+        dispatch(registerActionCreator())
     }
 
     return (
@@ -29,11 +33,11 @@ function CreatePage() {
                     <div className="card-content white-text">
                         <span className="card-title">Create person</span>
                         <input onChange={handleChange} name={'firstName'} type='text' placeholder={'First Name'}/>
-                        <input onChange={handleChange} name={'lastName'} type='text' placeholder={'Last Name'}/>
-                        <input onChange={handleChange} name={'age'} type='number' placeholder={'Age'}/>
+                        <input onChange={handleChange} name={'email'} type='email' placeholder={'email'}/>
+                        <input onChange={handleChange} name={'password'} type='password' placeholder={'password'}/>
                     </div>
                     <div className="card-action">
-                        <button type={'button'} onClick={createUserHandler} className={'btn yellow darken-3'}>Create</button>
+                        <button type={'button'} onClick={createUserHandler} className={'btn yellow darken-3'}>Register</button>
                     </div>
                 </div>
             </div>
